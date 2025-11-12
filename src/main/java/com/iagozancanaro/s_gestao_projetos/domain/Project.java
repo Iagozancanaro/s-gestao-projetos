@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -26,6 +27,10 @@ public class Project {
 
     @CreationTimestamp
     private LocalDateTime startDate;
+
     private LocalDateTime endDate;
+
+    @OneToMany(mappedBy = "project", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List<Task> tasks;
 
 }
